@@ -1,0 +1,13 @@
+.login-container {
+  margin-top: 10vh;
+  width: 30vw;
+  text-align: center;
+}
+
+.material-icons {
+  font-size: 3rem;
+}
+
+.register-form {
+  margin-top: 1rem;
+}
