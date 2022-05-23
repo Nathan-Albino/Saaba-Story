@@ -7,20 +7,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
   res.render("home", {
     layout: "layouts/login",
-  });
-});
-
-// Register Page Route
-router.get("/register", (req, res) => {
-  res.render("register", {
-    layout: "layouts/login",
-  });
-});
-
-// Login Page Route
-router.get("/login", (req, res) => {
-  res.render("login", {
-    layout: "layouts/login",
+    messages: req.flash("info"),
   });
 });
 
@@ -29,6 +16,12 @@ router.get("/dashboard", (req, res) => {
   res.render("dashboard", {
     layout: "layouts/main",
   });
+});
+
+router.get("/flash", function (req, res) {
+  // Set a flash message by passing the key, followed by the value, to req.flash().
+  req.flash("info", "Flash is back!");
+  res.redirect("/");
 });
 
 export { router as indexRouter };

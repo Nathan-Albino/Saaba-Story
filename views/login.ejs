@@ -1,1 +1,36 @@
-<p>login</p>
+<% if (locals.login_message != "") { %> <%= locals.login_message %> <% } %>
+
+<h3>Login</h3>
+<div class="divider"></div>
+<div class="row register-form">
+  <form action="/user/register" method="POST" class="col s12">
+    <div class="row">
+      <div class="input-field col s6">
+        <input
+          placeholder="Enter Username"
+          id="username"
+          type="text"
+          name="username"
+          class="validate"
+          value="<%=locals.username%>"
+        />
+        <label for="first_name">User name</label>
+      </div>
+      <div class="input-field col s6">
+        <input
+          placeholder="Enter Password"
+          id="password"
+          type="text"
+          name="password"
+          class="validate"
+          value="<%=locals.password%>"
+        />
+        <label for="password">Password</label>
+      </div>
+
+      <%- include("./partials/errorMessage.ejs") %>
+
+      <button class="btn red darken-1" type="submit">Login</button>
+    </div>
+  </form>
+</div>
