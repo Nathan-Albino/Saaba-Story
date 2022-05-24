@@ -1,6 +1,7 @@
 import express from "express";
 import { User } from "../models/user.js";
 import bcrypt from "bcryptjs";
+import passport from "passport";
 
 // user Router
 const router = express.Router();
@@ -20,6 +21,7 @@ router.get("/login", (req, res) => {
   });
 });
 
+// Register Post Route
 router.post("/register", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -82,5 +84,15 @@ router.post("/register", async (req, res) => {
     }
   }
 });
+
+// Login Post Route
+
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/dashboard",
+    failureRedirect: "/",
+  })
+);
 
 export { router as userRouter };
