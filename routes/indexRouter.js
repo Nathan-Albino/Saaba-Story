@@ -1,4 +1,5 @@
 import express from "express";
+import { isAuth } from "../routes/auth.js";
 
 //index Router
 const router = express.Router();
@@ -12,7 +13,7 @@ router.get("/", (req, res) => {
 });
 
 // Dashboard Route
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", isAuth, (req, res) => {
   res.render("dashboard", {
     layout: "layouts/main",
   });

@@ -5,11 +5,14 @@ import expressLayouts from "express-ejs-layouts";
 import session from "express-session";
 import flash from "connect-flash";
 import passport from "passport";
+import MongoStore from "connect-mongo";
 
 import { connectDatabase } from "./config/db.js";
 import { indexRouter } from "./routes/indexRouter.js";
 import { userRouter } from "./routes/userRouter.js";
 import { passportConfig } from "./config/passport.js";
+import { User } from "./models/user.js";
+
 dotenv.config({ path: "./config/config.env" });
 
 const app = express();
@@ -31,27 +34,35 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
+    store: new MongoStore({
+      mongoUrl: process.env.MONGO_URI,
+      collectionName: "sessions",
+      ttl: 60,
+    }),
   })
 );
 
-app.use(passport.initialize());
-app.use(passport.authenticate("session"));
-//app.use(passport.session()); same as passport.authenticate("session");
-
-passport.serializeUser(function (user, cb) {
-  process.nextTick(function () {
-    cb(null, { id: user.id, username: user.username });
-  });
-});
-
-passport.deserializeUser(function (user, cb) {
-  process.nextTick(function () {
-    return cb(null, user);
-  });
-});
-
 // Passport Config
+app.use(passport.authenticate("session")); //alters req.user property with the authenticated user and adds methods such as isAuthenticated
+//we now have req.isAuthenticated at every request
 passportConfig(passport);
+
+passport.serializeUser((user, done) => {
+  done(null, { _id: user.id, username: user.username });
+});
+
+//called directly after serializeUser
+passport.deserializeUser((user, done) => {
+  User.findById(user, (err, user) => {
+    done(err, user); //set the req.user to user HERE
+  });
+});
+
+app.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  next();
+});
 
 //logging - DEV ONLY
 app.use(morgan("dev"));

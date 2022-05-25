@@ -95,4 +95,11 @@ router.post(
   })
 );
 
+// Logout Post Route
+
+router.get("/logout", function (req, res) {
+  req.logout(); //deletes the session.passport.user object
+  res.redirect("/");
+});
+
 export { router as userRouter };
