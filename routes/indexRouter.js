@@ -1,28 +1,19 @@
 import express from "express";
 import { isAuth } from "../routes/auth.js";
-
+import { dashboardRouter } from "./dashboardRouter.js";
+import { isLogged } from "./auth.js";
 //index Router
 const router = express.Router();
 
 // Landing Page Route
-router.get("/", (req, res) => {
+router.get("/", isLogged, (req, res) => {
   res.render("home", {
     layout: "layouts/login",
     messages: req.flash("info"),
   });
 });
 
-// Dashboard Route
-router.get("/dashboard", isAuth, (req, res) => {
-  res.render("dashboard", {
-    layout: "layouts/main",
-  });
-});
-
-router.get("/flash", function (req, res) {
-  // Set a flash message by passing the key, followed by the value, to req.flash().
-  req.flash("info", "Flash is back!");
-  res.redirect("/");
-});
+// Dashboard Route - Protected with isAuth()
+router.use("/dashboard", isAuth, dashboardRouter);
 
 export { router as indexRouter };

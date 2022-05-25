@@ -2,19 +2,20 @@ import express from "express";
 import { User } from "../models/user.js";
 import bcrypt from "bcryptjs";
 import passport from "passport";
+import { isLogged, isAuth } from "./auth.js";
 
 // user Router
 const router = express.Router();
 
 // Register Page Route
-router.get("/register", (req, res) => {
+router.get("/register", isLogged, (req, res) => {
   res.render("register", {
     layout: "layouts/login",
   });
 });
 
 // Login Page Route
-router.get("/login", (req, res) => {
+router.get("/login", isLogged, (req, res) => {
   res.render("login", {
     layout: "layouts/login",
     login_message: req.flash("success_msg"),
@@ -97,7 +98,7 @@ router.post(
 
 // Logout Post Route
 
-router.get("/logout", function (req, res) {
+router.get("/logout", isAuth, function (req, res) {
   req.logout(); //deletes the session.passport.user object
   res.redirect("/");
 });

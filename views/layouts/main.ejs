@@ -9,12 +9,29 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
     <link rel="stylesheet" href="css/style.css" />
-
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <title>Saaba's Stories</title>
   </head>
   <body>
-    <%- body %>
+    <%- include("../partials/header.ejs")%>
+
+    <ul id="slide-out" class="sidenav">
+      <li><a href="#">Stories</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/user/logout">Logout</a></li>
+    </ul>
+
+    <div class="container"><%-body%></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const elem = document.querySelector(".sidenav");
+        const instance = new M.Sidenav(elem);
+      });
+    </script>
   </body>
 </html>

@@ -58,12 +58,6 @@ passport.deserializeUser((user, done) => {
   });
 });
 
-app.use((req, res, next) => {
-  console.log(req.session);
-  console.log(req.user);
-  next();
-});
-
 //logging - DEV ONLY
 app.use(morgan("dev"));
 

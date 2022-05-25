@@ -7,4 +7,12 @@ function isAuth(req, res, next) {
   }
 }
 
-export { isAuth };
+function isLogged(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.redirect("/dashboard");
+  } else {
+    next();
+  }
+}
+
+export { isAuth, isLogged };
