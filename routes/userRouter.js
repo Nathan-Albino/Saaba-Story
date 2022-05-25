@@ -19,6 +19,7 @@ router.get("/login", isLogged, (req, res) => {
   res.render("login", {
     layout: "layouts/login",
     login_message: req.flash("success_msg"),
+    failure_message: req.flash("fail_login"),
   });
 });
 
@@ -92,7 +93,8 @@ router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/dashboard",
-    failureRedirect: "/",
+    failureRedirect: "/user/login",
+    failureFlash: true,
   })
 );
 

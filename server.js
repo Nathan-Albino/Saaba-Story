@@ -21,6 +21,7 @@ const PORT = process.env.PORT || 3000;
 //application settings
 app.set("view engine", "ejs");
 app.set("views", process.cwd() + "/views");
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 app.use(expressLayouts);
 app.use(flash());
@@ -37,7 +38,6 @@ app.use(
     store: new MongoStore({
       mongoUrl: process.env.MONGO_URI,
       collectionName: "sessions",
-      ttl: 60,
     }),
   })
 );

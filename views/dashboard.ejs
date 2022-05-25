@@ -1,1 +1,33 @@
-<h1>This is the Dashboard</h1>
+<h2><%=locals.name%>'s dashboard</h2>
+<p>Here are your stories</p>
+<% if (locals.stories) { %>
+
+<table class="highlight">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Date Created</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% locals.stories.forEach(story => { %>
+    <tr>
+      <td><%=story.title%></td>
+      <td><%=story.createdAt%></td>
+      <td><%=story.status%></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% } else { %>
+<p>No Stories made</p>
+<% } %>
+
+<div class="section">
+  <a class="waves-effect waves-light btn" href="/dashboard/add"
+    >Add new Story</a
+  >
+</div>
