@@ -11,3 +11,22 @@
 .register-form {
   margin-top: 1rem;
 }
+
+.card-content.story {
+  padding-bottom: 1rem;
+}
+
+.card.story {
+  min-height: 320px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-footer {
+  margin-top: auto;
+}
+
+.card-action.story {
+  margin: auto;
+}

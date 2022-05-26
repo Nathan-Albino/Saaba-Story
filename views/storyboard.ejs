@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col s12">
+    <h2>Public stories</h2>
+    <p>view stories submitted by others</p>
+  </div>
+</div>
+<div class="row">
+  <% if (locals.stories.length != 0) { %> <% locals.stories.forEach(story => {
+  %>
+  <div class="col s6 m4 l4">
+    <div class="card story blue-grey darken-1">
+      <div class="card-content story white-text">
+        <span class="card-title"><%= story.title %></span>
+        <p><%= locals.truncateBody(story.body, 125) %></p>
+      </div>
+      <div class="card-footer">
+        <div class="section center-align author">
+          <div class="chip"><%=story.user.username%></div>
+        </div>
+        <div class="card-action story">
+          <a href="#">Read More</a>
+          <% if (locals.user_id === story.user.id) { %> <a href="#">EDIT</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %> <% } %>
+</div>

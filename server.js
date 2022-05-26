@@ -6,12 +6,14 @@ import session from "express-session";
 import flash from "connect-flash";
 import passport from "passport";
 import MongoStore from "connect-mongo";
+import methodOverride from "method-override";
 
 import { connectDatabase } from "./config/db.js";
 import { indexRouter } from "./routes/indexRouter.js";
 import { userRouter } from "./routes/userRouter.js";
 import { passportConfig } from "./config/passport.js";
 import { User } from "./models/user.js";
+
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -24,6 +26,7 @@ app.set("views", process.cwd() + "/views");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 app.use(expressLayouts);
+app.use(methodOverride('_method'))
 app.use(flash());
 app.use(
   express.urlencoded({

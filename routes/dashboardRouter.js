@@ -1,5 +1,6 @@
 import express from "express";
 import { Story } from "../models/story.js";
+import moment from "moment";
 
 //dashboard Router
 const router = express.Router();
@@ -11,12 +12,11 @@ router.get("/", async (req, res) => {
       user: req.user.id,
     });
 
-    console.log(stories);
-
     res.render("dashboard", {
       layout: "layouts/main",
       name: req.user.username,
       stories: stories,
+      moment: moment,
     });
   } catch (err) {
     console.log(err);

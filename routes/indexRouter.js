@@ -1,6 +1,7 @@
 import express from "express";
 import { isAuth } from "../routes/auth.js";
 import { dashboardRouter } from "./dashboardRouter.js";
+import { storyboardRouter } from "./storyboardRouter.js";
 import { isLogged } from "./auth.js";
 //index Router
 const router = express.Router();
@@ -15,5 +16,7 @@ router.get("/", isLogged, (req, res) => {
 
 // Dashboard Route - Protected with isAuth()
 router.use("/dashboard", isAuth, dashboardRouter);
+
+router.use("/storyboard", isAuth, storyboardRouter);
 
 export { router as indexRouter };

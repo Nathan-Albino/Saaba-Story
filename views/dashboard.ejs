@@ -14,8 +14,10 @@
   <tbody>
     <% locals.stories.forEach(story => { %>
     <tr>
-      <td><%=story.title%></td>
-      <td><%=story.createdAt%></td>
+      <td><a href="/storyboard/edit/<%=story.id%>"><%=story.title%></a></td>
+      <td>
+        <%=locals.moment(story.createdAt).format('MMMM Do YYYY, h:mm:ss a')%>
+      </td>
       <td><%=story.status%></td>
     </tr>
     <% }) %>
