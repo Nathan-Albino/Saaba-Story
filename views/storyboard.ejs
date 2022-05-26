@@ -18,8 +18,8 @@
           <div class="chip"><%=story.user.username%></div>
         </div>
         <div class="card-action story">
-          <a href="#">Read More</a>
-          <% if (locals.user_id === story.user.id) { %> <a href="#">EDIT</a>
+          <a href="/storyboard/<%= story._id %>">Read More</a>
+          <% if (locals.user_id === story.user.id) { %> <a href="/storyboard/edit/<%=story._id%>">EDIT</a>
           <% } %>
         </div>
       </div>

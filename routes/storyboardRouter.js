@@ -1,6 +1,7 @@
 import express from "express";
 import { Story } from "../models/story.js";
 import { truncateBody } from "../helpers/helper.js";
+import moment from "moment";
 
 //storyBoard Router
 const router = express.Router();
@@ -27,12 +28,32 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async(req, res) => {
+    
+    try {
+        const story = await Story.findById(req.params.id).populate("user", "username");
+
+        res.render("stories/singlePage", {
+            layout: "layouts/main",
+            story: story,
+            truncateBody,
+            moment
+        })
+
+    } catch (error) {
+        res.send("Page not found")
+    }
+
+    
+
+})
+
 //Storyboard edit story GET route
 router.get("/edit/:id", async (req, res) => {
   try {
     const story = await Story.findById(req.params.id);
 
-    if (req.user.id != story.user.toString()) {
+    if (req.user.id != story.user) {
       res.redirect("/dashboard");
     } else {
       res.render("stories/edit", {
@@ -48,7 +69,43 @@ router.get("/edit/:id", async (req, res) => {
 
 //Storyboard edit story PUT route
 router.put("/edit/:id", async (req, res) => {
-    res.send("put request successful")
+
+
+    try {
+        const story = await Story.findById(req.params.id);
+
+        if (req.user.id != story.user) {
+            res.redirect("/dashboard");
+        } else {
+            await Story.findByIdAndUpdate(req.params.id, {
+                title: req.body.title,
+                body: req.body.body,
+                status:req.body.status
+            }, {
+                new: true,
+                runValidators: true
+            })
+
+            res.redirect("/dashboard");
+        }
+    } catch (error) {
+        res.send("Something went wrong")
+    }
+
+})
+
+//Storyboard delete story DELETE Route
+router.delete("/delete/:id", async (req, res) => {
+    try {
+        await Story.deleteOne({
+            _id: req.params.id
+        })
+
+        res.redirect("/dashboard");
+
+    } catch (error) {
+        res.send("Something went wrong")
+    }
 })
 
 export { router as storyboardRouter };

@@ -30,3 +30,17 @@
 .card-action.story {
   margin: auto;
 }
+
+.btn-small {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 0.5rem;
+}
+
+img.responsive-img {
+  max-width: 70%;
+}
+
+.author-name {
+  margin-bottom: 1rem;
+}

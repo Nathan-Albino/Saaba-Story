@@ -10,6 +10,8 @@ router.get("/", async (req, res) => {
   try {
     const stories = await Story.find({
       user: req.user.id,
+    }).sort({
+      createdAt: "desc"
     });
 
     res.render("dashboard", {
