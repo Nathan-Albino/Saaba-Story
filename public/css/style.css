@@ -1,0 +1,46 @@
+.home-container {
+  margin-top: 10vh;
+  width: 30vw;
+  text-align: center;
+}
+
+.material-icons {
+  font-size: 3rem;
+}
+
+.register-form {
+  margin-top: 1rem;
+}
+
+.card-content.story {
+  padding-bottom: 1rem;
+}
+
+.card.story {
+  min-height: 320px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-footer {
+  margin-top: auto;
+}
+
+.card-action.story {
+  margin: auto;
+}
+
+.btn-small {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 0.5rem;
+}
+
+img.responsive-img {
+  max-width: 70%;
+}
+
+.author-name {
+  margin-bottom: 1rem;
+}

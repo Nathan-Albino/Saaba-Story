@@ -1,0 +1,42 @@
+<h2><%=locals.name%>'s dashboard</h2>
+<p>Here are your stories</p>
+<% if (locals.stories) { %>
+
+<table class="highlight">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Date Created</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% locals.stories.forEach(story => { %>
+    <tr>
+      <td><a href="/storyboard/<%=story.id%>"><%=story.title%></a></td>
+      <td>
+        <%=locals.moment(story.createdAt).format('MMMM Do YYYY, h:mm:ss a')%>
+      </td>
+      <td><%=story.status%></td>
+      <td><a href="/storyboard/edit/<%= story._id %>" class="btn btn-small #f9a825 yellow darken-3">Edit</a>
+      </td>
+      <td>
+        <form action="/storyboard/delete/<%= story._id %>?_method=DELETE" method="POST">
+          <button class="btn btn-small" type="Submit">DELETE</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% } else { %>
+<p>No Stories made</p>
+<% } %>
+
+<div class="section">
+  <a class="waves-effect waves-light btn" href="/dashboard/add"
+    >Add new Story</a
+  >
+</div>
