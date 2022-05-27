@@ -2,7 +2,8 @@
 
 Saaba-Story is a story sharing application where users can create public and private stories about anything that can be shared among other users.
 
-![](https://imgur.com/a/4sPa5co)
+![Saaba-Story-Demo1](https://user-images.githubusercontent.com/90590871/170629229-0b6c2e76-a220-4714-a523-fbfc61ce0afd.gif)
+![Saaba-Story-Demo2](https://user-images.githubusercontent.com/90590871/170629270-6212cc9d-02d8-4bfc-9d68-fd9c7fa64c27.gif)
 
 ## Built With
   - HTML / CSS
