@@ -10,8 +10,8 @@
   <div class="col s6 m4 l4">
     <div class="card story blue-grey darken-1">
       <div class="card-content story white-text">
-        <span class="card-title"><%= story.title %></span>
-        <p><%= locals.truncateBody(story.body, 125) %></p>
+        <span class="card-title" id="story-head"><%= story.title %></span>
+        <p><%= locals.truncateBody(story.body, 250) %></p>
       </div>
       <div class="card-footer">
         <div class="section center-align author">
@@ -19,7 +19,8 @@
         </div>
         <div class="card-action story">
           <a href="/storyboard/<%= story._id %>">Read More</a>
-          <% if (locals.user_id === story.user.id) { %> <a href="/storyboard/edit/<%=story._id%>">EDIT</a>
+          <% if (locals.user_id === story.user.id) { %>
+          <a href="/storyboard/edit/<%=story._id%>">EDIT</a>
           <% } %>
         </div>
       </div>
