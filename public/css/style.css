@@ -52,3 +52,7 @@ img.responsive-img {
 p.story-content {
   white-space: pre-line;
 }
+
+.divider {
+  margin-bottom: 10px;
+}
