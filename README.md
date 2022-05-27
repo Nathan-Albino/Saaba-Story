@@ -2,6 +2,9 @@
 
 Saaba-Story is a story sharing application where users can create public and private stories about anything that can be shared among other users.
 
+![Saaba-Story-Demo1](https://user-images.githubusercontent.com/90590871/170629229-0b6c2e76-a220-4714-a523-fbfc61ce0afd.gif)
+![Saaba-Story-Demo2](https://user-images.githubusercontent.com/90590871/170629270-6212cc9d-02d8-4bfc-9d68-fd9c7fa64c27.gif)
+
 ## Built With
   - HTML / CSS
   - Javascript
@@ -18,5 +21,6 @@ Saaba-Story is a story sharing application where users can create public and pri
   - User stories are stored within a MongoDB Database
   - Server-sided rendering of pages using EJS templating
   
-
+## Credits
+  Credits to Traversy Media from https://www.youtube.com/c/TraversyMedia for the idea and guide for building this application. Additional functionality was / is currently being built by me
 
