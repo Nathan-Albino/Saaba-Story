@@ -37,11 +37,17 @@
         const selectElem = document.querySelector("select");
         const instanceSelect = new M.FormSelect(selectElem);
 
-        ClassicEditor.create(document.querySelector("#textarea2")).catch(
-          (err) => {
-            console.error(error);
-          }
-        );
+        // const wordCountConfig = {
+        //   container: document.querySelector(".test"),
+        //   displayCharacters: true,
+        // };
+
+        // ClassicEditor.create(document.querySelector("#textarea2"), {
+        //   wordCount: wordCountConfig,
+        // }).catch((err) => {
+        //   console.error(err);
+        // });
+
         ClassicEditor.config.autoParagraph = false;
       });
     </script>

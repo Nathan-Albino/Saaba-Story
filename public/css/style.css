@@ -17,7 +17,7 @@
 }
 
 .card.story {
-  min-height: 320px;
+  min-height: 430px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -43,4 +43,8 @@ img.responsive-img {
 
 .author-name {
   margin-bottom: 1rem;
+}
+
+#story-head {
+  word-wrap: break-word;
 }
